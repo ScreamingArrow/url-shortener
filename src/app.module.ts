@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { options } from '@config/typeorm';
 import { HealthModule } from '@modules/health/health.module';
 import { ShortenerModule } from '@modules/shortener/shortener.module';
+import { AuthModule } from '@modules/auth/auth.module';
+import { UserModule } from '@modules/user/user.module';
 
 @Module({
   imports: [
@@ -16,7 +18,9 @@ import { ShortenerModule } from '@modules/shortener/shortener.module';
       ...options
     }),
     HealthModule,
-    ShortenerModule
+    ShortenerModule,
+    AuthModule,
+    UserModule,
   ],
 })
 export class AppModule {}
