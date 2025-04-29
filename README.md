@@ -4,7 +4,7 @@ A URL Shortener built with **NestJS**, **PostgreSQL**, and **Docker Compose**.
 
 ## 🚀 Getting Started
 
-These instructions will get your project up and running on your local machine using Docker.
+These instructions will get the project up and running on your local machine using Docker.
 
 ---
 
