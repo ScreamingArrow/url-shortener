@@ -23,6 +23,7 @@
     "migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.7.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
@@ -89,10 +90,6 @@
       "@modules/(.*)": "<rootDir>/modules/$1",
       "@config/(.*)": "<rootDir>/config/$1",
       "@shared/(.*)": "<rootDir>/shared/$1"
-    },
-    "engines": {
-      "npm": ">=6.0.0",
-      "yarn": "please-use-npm"
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { OptionsDTO } from '@shared/dtos';
 import { Url } from '@shared/entities';
 import {
   DataSource,
@@ -30,6 +31,15 @@ export class UrlRepository {
   getByShortId(shortId: string): Promise<Url | null> {
     return this.repository.findOne({
       where: { shortId },
+      relations: {
+        metric: true,
+      },
+    });
+  }
+
+  getById(id: number): Promise<Url | null> {
+    return this.repository.findOne({
+      where: { id },
     });
   }
 
@@ -43,11 +53,33 @@ export class UrlRepository {
     return this.repository.save(object);
   }
 
-  delete(id: string, entityManager?: EntityManager): Promise<DeleteResult> {
+  delete(id: number, entityManager?: EntityManager): Promise<DeleteResult> {
     if (entityManager) {
       return entityManager.softDelete(Url, { id, deletedAt: IsNull() });
     }
 
     return this.repository.softDelete({ id, deletedAt: IsNull() });
+  }
+
+  list(id: number, options: OptionsDTO): Promise<[Url[], number] | null> {
+    return this.repository.findAndCount({
+      take: options.pageSize ? options.pageSize : 10,
+      skip:
+        options.page && options.pageSize
+          ? (options.page - 1) * options.pageSize
+          : 0,
+      where: { user: { id } },
+      relations: {
+        metric: true,
+      },
+    });
+  }
+
+  update(data: Partial<Url>, entityManager?: EntityManager): Promise<Url> {
+    if (entityManager) {
+      return entityManager.save(data) as Promise<Url>;
+    }
+
+    return this.repository.save(data);
   }
 }

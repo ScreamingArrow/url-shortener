@@ -1,6 +1,13 @@
-import { Injectable } from "@nestjs/common";
-import { User } from "@shared/entities";
-import { Repository, DataSource, EntityManager, DeepPartial, DeleteResult, IsNull } from "typeorm";
+import { Injectable } from '@nestjs/common';
+import { User } from '@shared/entities';
+import {
+  Repository,
+  DataSource,
+  EntityManager,
+  DeepPartial,
+  DeleteResult,
+  IsNull,
+} from 'typeorm';
 
 @Injectable()
 export class UserRepository {
@@ -23,7 +30,7 @@ export class UserRepository {
   getByEmail(email: string): Promise<User | null> {
     return this.repository.findOne({
       where: { email },
-      select: ['id', 'email']
+      select: ['id', 'email', 'password'],
     });
   }
 
@@ -37,7 +44,7 @@ export class UserRepository {
     return this.repository.save(object);
   }
 
-  delete(id: string, entityManager?: EntityManager): Promise<DeleteResult> {
+  delete(id: number, entityManager?: EntityManager): Promise<DeleteResult> {
     if (entityManager) {
       return entityManager.softDelete(User, { id, deletedAt: IsNull() });
     }

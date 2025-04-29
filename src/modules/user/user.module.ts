@@ -4,7 +4,7 @@ import { CreateUserService } from './context/create/create.service';
 import { UserRepository } from '@shared/repositories';
 
 @Module({
-    controllers: [CreateUserController],
-    providers: [CreateUserService, UserRepository]
+  controllers: [CreateUserController],
+  providers: [CreateUserService, UserRepository],
 })
 export class UserModule {}
