@@ -10,13 +10,13 @@ export class UserGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request: Request = context.switchToHttp().getRequest();
-    const { authorization } = request?.headers;
+    const { authorization } = request.headers;
 
     if (!authorization) {
       return true;
     }
 
-    const [, token] = authorization?.split(' ');
+    const [, token] = authorization.split(' ');
 
     const jwtDecoded = jwt.decode(token) as JwtPayload;
 

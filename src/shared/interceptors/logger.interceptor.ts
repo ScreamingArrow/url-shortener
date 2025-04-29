@@ -27,11 +27,11 @@ export class LoggerInterceptor implements NestInterceptor {
         );
       }),
       catchError((err) => {
-        const statusCode = err.response
+        const statusCode: string = err.response
           ? err.response.statusCode || err.response.status || err.status
           : HttpStatus.INTERNAL_SERVER_ERROR;
 
-        const response = err.response
+        const response: string = err.response
           ? err.response.message.text ||
             err.response.message ||
             err.response.error ||

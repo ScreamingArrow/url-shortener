@@ -4,7 +4,7 @@ export default () => {
     application: {
       port: process.env.PORT || 3000,
       stage: process.env.STAGE || 'development',
-      randomBytesSize: parseInt(process.env.RANDOM_BYTES_SIZE, 10) || 32
+      randomBytesSize: parseInt(process.env.RANDOM_BYTES_SIZE, 10) || 32,
     },
     database: {
       host: process.env.DB_HOST,

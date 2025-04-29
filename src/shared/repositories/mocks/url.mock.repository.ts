@@ -8,14 +8,14 @@ import { fakeMetric } from './metric.mock.repository';
 export function generateObject(dto?: Partial<Url>) {
   const object = new Url();
 
-  (object.id = dto?.id || faker.number.int({ min: 1, max: 10000 })),
-    (object.originalUrl = dto?.originalUrl || faker.internet.domainName()),
-    (object.shortId = dto?.shortId || faker.lorem.words({ min: 6, max: 6 })),
-    (object.user = dto?.user || fakeUser),
-    (object.metric = dto?.metric || fakeMetric),
-    (object.createdAt = dto?.createdAt || faker.date.past()),
-    (object.updatedAt = dto?.updatedAt || faker.date.recent()),
-    (object.deletedAt = dto?.deletedAt || null);
+  object.id = dto?.id || faker.number.int({ min: 1, max: 10000 }),
+  object.originalUrl = dto?.originalUrl || faker.internet.domainName(),
+  object.shortId = dto?.shortId || faker.lorem.words({ min: 6, max: 6 }),
+  object.user = dto?.user || fakeUser,
+  object.metric = dto?.metric || fakeMetric,
+  object.createdAt = dto?.createdAt || faker.date.past(),
+  object.updatedAt = dto?.updatedAt || faker.date.recent(),
+  object.deletedAt = dto?.deletedAt || null;
 
   return object;
 }

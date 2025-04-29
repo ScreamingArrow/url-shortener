@@ -19,10 +19,10 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      const [, token] = authorization?.split(' ');
+      const [, token] = authorization.split(' ');
 
       jwt.verify(token, env().jwt.secret);
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired token');
     }
 

@@ -5,12 +5,12 @@ import { DeleteResult } from 'typeorm';
 export function generateObject(dto?: Partial<User>) {
   const object = new User();
 
-  (object.id = dto?.id || faker.number.int({ min: 1, max: 10000 })),
-    (object.email = dto?.email || faker.internet.email()),
-    (object.password = dto?.password || faker.internet.password()),
-    (object.createdAt = dto?.createdAt || faker.date.past()),
-    (object.updatedAt = dto?.updatedAt || faker.date.recent()),
-    (object.deletedAt = dto?.deletedAt || null);
+  object.id = dto?.id || faker.number.int({ min: 1, max: 10000 }),
+  object.email = dto?.email || faker.internet.email(),
+  object.password = dto?.password || faker.internet.password(),
+  object.createdAt = dto?.createdAt || faker.date.past(),
+  object.updatedAt = dto?.updatedAt || faker.date.recent(),
+  object.deletedAt = dto?.deletedAt || null;
 
   return object;
 }
